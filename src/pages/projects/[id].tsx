@@ -1,7 +1,7 @@
 import {useRouter} from 'next/router'
 import {useQuery, gql} from '@apollo/client'
-import Layout from 'components/Layout'
-import ProjectCard from 'components/ProjectCard'
+import Layout from '../../components/Layout'
+import ProjectCard from '../../components/ProjectCard'
 
 const PROJECT_QUERY = gql`
   query project($id: Int!) {
