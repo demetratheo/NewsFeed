@@ -11,19 +11,6 @@ type Newsfeed = {
   description: string;
 }
 
-const projectsQuery = (start: number, rowNumb: number, userId: number) => `
-  UNION
-    SELECT * FROM
-      (SELECT DISTINCT p.name, description
-        FROM user_projects up
-        JOIN users u ON up.user_id = u.id
-        JOIN projects p ON p.id = up.project_id
-        WHERE u.fellowship = "founders"
-        AND u.id != ${userId}
-        ORDER BY p.created_ts DESC
-        LIMIT ${start}, ${rowNumb})
-`
-
 export default async function userNewsfeed(parent: unknown, {id, page}: Args): Promise<Newsfeed[]> {
   const user = await getUser(null, {id})
   const fellowships = findAnnouncementFellowship(user.fellowship)
@@ -43,6 +30,19 @@ export default async function userNewsfeed(parent: unknown, {id, page}: Args): P
 
   return newsfeed
 }
+
+const projectsQuery = (start: number, rowNumb: number, userId: number) => `
+  UNION
+    SELECT * FROM
+      (SELECT DISTINCT p.name, description
+        FROM user_projects up
+        JOIN users u ON up.user_id = u.id
+        JOIN projects p ON p.id = up.project_id
+        WHERE u.fellowship = "founders"
+        AND u.id != ${userId}
+        ORDER BY p.created_ts DESC
+        LIMIT ${start}, ${rowNumb})
+`
 
 function findAnnouncementFellowship(userFellowship: string){
   switch (userFellowship) {
