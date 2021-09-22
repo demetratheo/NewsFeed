@@ -15,14 +15,15 @@ const Container = styled.div`
   padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 `
 
 const Main = styled.div`
-  padding: 1rem 0;
-  flex: 1;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   max-width: 600px;
+  background: white;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
 `

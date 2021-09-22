@@ -28,6 +28,7 @@ const theme = {
 const GlobalStyle = createGlobalStyle`
   html,
   body {
+    background: #4e5961;
     padding: 0;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,

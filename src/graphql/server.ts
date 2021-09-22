@@ -19,9 +19,16 @@ const typeDefs = gql`
     projects: [Project!]!
   }
 
+  type Newsfeed {
+    name: String!
+    description: String!
+  }
+
   type Query {
+    userNewsfeed(id: Int!, page: Int!): [Newsfeed!]!
     project(id: Int!): Project!
     user(id: Int!): User!
+    users: [User!]!
   }
 `;
 
